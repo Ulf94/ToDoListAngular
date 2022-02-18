@@ -20,17 +20,17 @@ export class ShowTaskComponent implements OnInit {
   usersList: any = [];
   usersMap: Map<number, string> = new Map();
 
-  
 
 
-  constructor(private service: TaskApiService, 
-              private http: HttpClient,
-              public userService: UserService) { }
+
+  constructor(private service: TaskApiService,
+    private http: HttpClient,
+    public userService: UserService) { }
 
   ngOnInit(): void {
     this.taskList$ = this.service.getTasksList();
     this.categoryTypesList$ = this.service.getCategoryTypesList();
-    this.usersList$ = this.service.getUsersList();
+    this.usersList$ = this.userService.getUsersList();
     this.refreshCategoryTypesMap();
     this.refreshUsersMap();
   }
@@ -51,8 +51,8 @@ export class ShowTaskComponent implements OnInit {
     })
   }
 
-  refreshUsersMap(){
-    this.service.getUsersList().subscribe(res => {
+  refreshUsersMap() {
+    this.userService.getUsersList().subscribe(res => {
       this.usersList = res;
 
       for (let i = 0; i < res.length; i++) {
@@ -73,7 +73,7 @@ export class ShowTaskComponent implements OnInit {
     this.activateAddEditTaskComponent = true;
   }
 
-  modalEdit(item:any) {
+  modalEdit(item: any) {
     this.task = item;
     this.modalTitle = "Edit task";
     this.activateAddEditTaskComponent = true;
@@ -105,7 +105,6 @@ export class ShowTaskComponent implements OnInit {
         this.taskList$ = this.service.getTasksList();
       });
     }
-    
   }
 
 }

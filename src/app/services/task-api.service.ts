@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class TaskApiService {
 
-  readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
+  //readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
+  readonly taskAPIUrl = "https://localhost:44322/api";
 
   constructor(private http: HttpClient) { }
 
@@ -62,19 +63,4 @@ export class TaskApiService {
   deleteStatus(id: number | string) {
     return this.http.delete(this.taskAPIUrl + `/status/${id}`);
   }
-
-  // Login
-
-  loginTest(): Observable<any[]> {
-    return this.http.get<any>(this.taskAPIUrl + '/UserLogin');
-  }
-
-  // Users
-  getUsersList(): Observable<any[]> {
-    return this.http.get<any>(this.taskAPIUrl + '/users');
-  }
-
-
-
-
 }

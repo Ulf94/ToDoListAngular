@@ -1,0 +1,85 @@
+<form>
+    <div class="mb-3">
+        <label for="firstName"
+               class="form-label">First name</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="firstName"
+               name="firstName" />
+    </div>
+
+    <div class="mb-3">
+        <label for="lastName"
+               class="form-label">Last name</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="lastName"
+               name="lastName" />
+    </div>
+
+    <div class="mb-3">
+        <label for="email"
+               class="form-label">Email</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="email"
+               name="email" />
+    </div>
+
+    <div class="mb-3">
+        <label for="dateOfBirth"
+               class="form-label">Date of birth:</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="dateOfBirth"
+               name="dateOfBirth" />
+    </div>
+
+    <div class="mb-3">
+        <label for="nationality"
+               class="form-label">Nationality</label>
+        <!-- <input type="text"
+               class="form-control"
+               [(ngModel)]="nationality"
+               name="nationality" /> -->
+
+        <select class="form-control"
+                name="country"
+                id="country"
+                name="nationality"
+                ngModel
+                required
+                #nationality="ngModel"
+                autofocus>
+            <option value=""
+                    disabled
+                    selected>Select Country</option>
+            <!-- // TODO -->
+            <option *ngFor="let country of countries"
+                    [value]="nationality"
+                    inputmode="">{{country.name}}</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="roleId"
+               class="form-label">Role</label>
+        <select class="form-control"
+                name="roleId"
+                id="roleId"
+                [(ngModel)]="roleId">
+            <option *ngFor="let type of rolesList$|async"
+                    [value]="type.id">{{type.name}}</option>
+        </select>
+    </div>
+
+
+
+
+    <button (click)="manageUser()"
+            *ngIf="user.id!=0"
+            class="btn btn-secondary">
+        Update
+    </button>
+
+</form>

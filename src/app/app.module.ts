@@ -16,6 +16,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { AdminpanelComponent } from './adminpanel/adminpanel.component';
+import { EditUserComponent } from './adminpanel/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminpanelComponent } from './adminpanel/adminpanel.component';
     NavbarComponent,
     routingComponents,
     RegisterComponent,
-    AdminpanelComponent
+    AdminpanelComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

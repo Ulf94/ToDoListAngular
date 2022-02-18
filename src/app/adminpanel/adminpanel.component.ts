@@ -11,23 +11,67 @@ import { UserService } from '../services/user.service';
 })
 export class AdminpanelComponent implements OnInit {
 
-  constructor(private service: TaskApiService, 
-              private http: HttpClient,
-              public userService: UserService) { }
+  constructor(private service: TaskApiService,
+    private http: HttpClient,
+    public userService: UserService) { }
 
   usersList$!: Observable<any[]>;
+  roleList$!: Observable<any[]>;
+  roleList: any = [];
+  roleMap: Map<number, string> = new Map();
+  modalTitle: string = '';
+  activateManageUserComponent: boolean = false;
+  user: any;
+
 
   ngOnInit(): void {
-    this.usersList$ = this.service.getUsersList();
-    
+    this.usersList$ = this.userService.getUsersList();
+    this.roleList$ = this.service.getCategoryTypesList();
+    this.refreshRoleMap();
   }
 
-  editUser(user: any){
+  refreshRoleMap() {
+    this.userService.getRoleList().subscribe(data => {
+      this.roleList = data;
 
+      for (let i = 0; i < data.length; i++) {
+        this.roleMap.set(this.roleList[i].id, this.roleList[i].name);
+      }
+    })
   }
 
-  deleteUser(user: any){
+  modalEdit(item: any) {
+    this.user = item;
+    this.modalTitle = "Manage user";
+    this.activateManageUserComponent = true;
+  }
 
+  modalClose() {
+    this.activateManageUserComponent = false;
+    this.usersList$ = this.userService.getUsersList();
+  }
+
+  deleteUser(user: any) {
+    var confirmationMessage = user.id;
+    if (confirm('Are you sure you want to delete user with ID: ' + confirmationMessage)) {
+      this.userService.deleteUser(user.id).subscribe(response => {
+        var closeModalBtn = document.getElementById('add-edit-modal-close');
+        if (closeModalBtn) {
+          closeModalBtn.click();
+        }
+
+        var showDeleteSuccess = document.getElementById('add-update-alert');
+        if (showDeleteSuccess) {
+          showDeleteSuccess.style.display = "block";
+        }
+        setTimeout(function () {
+          if (showDeleteSuccess) {
+            showDeleteSuccess.style.display = "none";
+          }
+        }, 4000);
+        this.usersList$ = this.userService.getUsersList();
+      });
+    }
   }
 
 }
