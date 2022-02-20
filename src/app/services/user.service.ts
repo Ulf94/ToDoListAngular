@@ -67,7 +67,7 @@ export class UserService {
   }
 
   currentUser(): any {
-    return this.http.get<any>(this.taskAPIUrl + "/UserLogin/getCurrentUser", { withCredentials: true }).subscribe(
+    return this.http.get<any>(this.taskAPIUrl + "/UserLogin/getCurrentUser").subscribe(
       res => {
         localStorage.setItem('userId', res.userId);
         localStorage.setItem('userName', res.userName);
