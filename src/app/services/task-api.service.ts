@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class TaskApiService {
 
-  readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
-  //readonly taskAPIUrl = "https://localhost:44322/api";
+  //readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
+  readonly taskAPIUrl = "https://localhost:44322/api";
 
   constructor(private http: HttpClient) { }
 

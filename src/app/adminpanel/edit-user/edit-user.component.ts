@@ -13,7 +13,7 @@ import { countries } from 'src/environments/environment';
 export class EditUserComponent implements OnInit {
 
   rolesList$!: Observable<any[]>;
-  public countries: any = countries
+  public countries: any = countries;
 
   @Input() user: any;
   id: number = 0;
@@ -23,6 +23,8 @@ export class EditUserComponent implements OnInit {
   dateOfBirth: string = "";
   nationality: string = "";
   roleId: number = 0;
+  oldNationality!: Number;
+  date: string = "1994-08-24";
 
   constructor(private service: TaskApiService,
     private http: HttpClient,
@@ -33,10 +35,11 @@ export class EditUserComponent implements OnInit {
     this.email = this.user.email;
     this.firstName = this.user.firstName;
     this.lastName = this.user.lastName;
-    this.dateOfBirth = this.user.dateOfBirth;
+    this.dateOfBirth = this.user.dateOfBirth.slice(0, 10);
     this.nationality = this.user.nationality;
     this.roleId = this.user.roleId;
     this.rolesList$ = this.userService.getRoleList();
+    this.oldNationality = 4;
   }
 
   manageUser() {

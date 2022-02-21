@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -74,4 +75,5 @@ export class AdminpanelComponent implements OnInit {
     }
   }
 
+  
 }

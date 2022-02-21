@@ -9,8 +9,8 @@ import { isLogged } from '../navbar/navbar.component';
 })
 export class UserService {
 
-  readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
-  //readonly taskAPIUrl = "https://localhost:44322/api";
+  //readonly taskAPIUrl = "https://taskmanagermaz.azurewebsites.net/api";
+  readonly taskAPIUrl = "https://localhost:44322/api";
 
   isAuthenticated: boolean = false;
   isAdmin: boolean = false;
@@ -116,7 +116,7 @@ export class UserService {
   }
 
   updateUser(id: number | string, data: any) {
-    return this.http.put(this.taskAPIUrl + `/users/${id}`, data);
+    return this.http.patch(this.taskAPIUrl + `/users/`, data);
   }
 
 

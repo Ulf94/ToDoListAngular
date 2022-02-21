@@ -115,6 +115,10 @@ export class AddEditTaskComponent implements OnInit {
     })
   }
 
+  validate(){
+    
+  }
+
 
 
 
